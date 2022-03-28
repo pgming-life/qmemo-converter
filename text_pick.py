@@ -1,9 +1,10 @@
 from practical_package import module_console_text as mct
 
 # フォルダの存在を確認
-folder = "Output_TxtSJIS"
-mct.path_search_end(folder)
-mct.folder_create("memo")
+folder_sch = "Output_TxtSJIS"
+folder_output = "memo"
+mct.path_search_end(folder_sch)
+mct.folder_create(folder_output)
 
 # 取込ファイル開始番号
 num_memo = 1
@@ -16,10 +17,10 @@ num = int(x)
 # メインループ
 cnt_memo = mct.counter(num_memo)
 while 1:    # 再帰的に読み込む
-    flag_exist = mct.path_search_continue("{0}\memoinfo{1}.txt".format(folder, cnt_memo.result()))
+    flag_exist = mct.path_search_continue("{0}\memoinfo{1}.txt".format(folder_sch, cnt_memo.result()))
     if flag_exist:
         # ファイルの読み込み
-        with open("{0}\memoinfo{1}.txt".format(folder, cnt_memo.result())) as f:
+        with open("{0}\memoinfo{1}.txt".format(folder_sch, cnt_memo.result())) as f:
             lines_file = f.readlines()
             lines_file = [line.strip() for line in lines_file]
 
@@ -63,7 +64,7 @@ while 1:    # 再帰的に読み込む
             print("出力メモ番号{}".format(num))
             
             # メモ出力
-            with open("memo\memo{}.txt".format(num), 'w', encoding='utf_8') as f:
+            with open("{0}\{0}{1}.txt".format(folder_output, num), 'w', encoding='utf_8') as f:
                 print("\nメモ出力中...")
                 for line in mct.tqdm(data_lines):
                     f.writelines("{}\n".format(line))
@@ -76,5 +77,3 @@ while 1:    # 再帰的に読み込む
     else:
         break
     cnt_memo.count()
-
-input("\n>>>\n>>>\n>>>\n>>>処理が終了しました。ウィンドウを閉じるにはEnterを押してください...\n\n")

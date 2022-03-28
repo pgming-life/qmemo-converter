@@ -40,6 +40,8 @@ rem 画像を抽出
 echo Python picture_pick.exe Execute...
 call picture_pick.exe
 
+pause
+
 rem テキストを抽出
 echo Python text_pick.exe Execute...
 call text_pick.exe
@@ -47,4 +49,5 @@ call text_pick.exe
 echo >>>>>>>>>>>>>>>>>>>>
 echo Complete...OK!!!
 echo >>>>>>>>>>>>>>>>>>>>
+
 pause
